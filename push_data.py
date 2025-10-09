@@ -3,10 +3,12 @@ import sys
 import json
 
 from dotenv import load_dotenv
+
 load_dotenv()
 
 MONGO_DB_URL=os.getenv("MONGO_DB_URL")
 print(MONGO_DB_URL)
+
 import certifi
 ca=certifi.where()
 
@@ -48,9 +50,9 @@ class Earthquake_Data_Extract():
             raise (e,sys)
         
 if __name__=='__main__':
-    FILE_PATH=""
-    DATABASE=""
-    Collection=""
+    FILE_PATH="Earthquake_Data/dataset.csv"
+    DATABASE="Earthquake_Data"
+    Collection="earthquake_collection"
     networkobj=Earthquake_Data_Extract()
     records=networkobj.csv_to_json_convertor(file_path=FILE_PATH)
     print(records)
