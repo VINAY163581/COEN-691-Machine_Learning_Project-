@@ -1,0 +1,8 @@
+python-dotenv
+pandas
+numpy
+pymongo
+Certifi
+pymongo[srv]==3.12
+
+##-e .
