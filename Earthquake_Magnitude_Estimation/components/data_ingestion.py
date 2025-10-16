@@ -2,7 +2,7 @@ from Earthquake_Magnitude_Estimation.exception.exception import Earthquake_Magni
 from Earthquake_Magnitude_Estimation.logging.logger import logging
 
 
-## configuration of the Data Ingestion Config
+
 
 from Earthquake_Magnitude_Estimation.entity.config_entity import DataIngestionConfig
 from Earthquake_Magnitude_Estimation.entity.artifact_entity import DataIngestionArtifact
