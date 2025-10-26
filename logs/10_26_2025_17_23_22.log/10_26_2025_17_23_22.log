@@ -1,0 +1,30 @@
+[ 2025-10-26 17:23:22,996 ] 161 numexpr.utils - INFO - NumExpr defaulting to 12 threads.
+[ 2025-10-26 17:23:26,345 ] 19 root - INFO - Initiated the data ingestion component
+[ 2025-10-26 17:23:28,842 ] 65 root - INFO - Performed train test split on the dataframe
+[ 2025-10-26 17:23:28,842 ] 67 root - INFO - Exited split_data_as_train_test method of Data_Ingestion class
+[ 2025-10-26 17:23:28,843 ] 75 root - INFO - Exporting train and test file path.
+[ 2025-10-26 17:23:28,885 ] 84 root - INFO - Exported train and test file path.
+[ 2025-10-26 17:23:28,887 ] 21 root - INFO - Completed the data ingestion component
+[ 2025-10-26 17:23:28,889 ] 25 root - INFO - Initiated the data validation component
+[ 2025-10-26 17:23:28,964 ] 32 root - INFO - Required number of columns:1
+[ 2025-10-26 17:23:28,964 ] 33 root - INFO - Data frame has columns:13
+[ 2025-10-26 17:23:28,964 ] 32 root - INFO - Required number of columns:1
+[ 2025-10-26 17:23:28,964 ] 33 root - INFO - Data frame has columns:13
+[ 2025-10-26 17:23:29,052 ] 29 root - INFO - Initiated the data transformation component
+[ 2025-10-26 17:23:29,052 ] 80 root - INFO - Entered initiate_data_transformation method of DataTransformation class
+[ 2025-10-26 17:23:29,052 ] 82 root - INFO - Starting data transformation
+[ 2025-10-26 17:23:29,119 ] 102 root - INFO - Numeric columns for transformation: ['time', 'latitude', 'longitude', 'depth', 'nst', 'gap', 'dmin', 'rms', 'updated']
+[ 2025-10-26 17:23:29,120 ] 64 root - INFO - Initializing KNNImputer and StandardScaler for numeric columns
+[ 2025-10-26 17:23:29,606 ] 47 root - INFO - Entered the save_object method of MainUtils class
+[ 2025-10-26 17:23:29,607 ] 51 root - INFO - Exited the save_object method of MainUtils class
+[ 2025-10-26 17:23:29,607 ] 47 root - INFO - Entered the save_object method of MainUtils class
+[ 2025-10-26 17:23:29,609 ] 51 root - INFO - Exited the save_object method of MainUtils class
+[ 2025-10-26 17:23:29,609 ] 125 root - INFO - Transformed train shape: (4228, 10)
+[ 2025-10-26 17:23:29,609 ] 126 root - INFO - Transformed test shape: (1057, 10)
+[ 2025-10-26 17:23:29,609 ] 127 root - INFO - Data transformation completed successfully
+[ 2025-10-26 17:23:29,611 ] 33 root - INFO - Completed the data transformation component
+[ 2025-10-26 17:23:29,611 ] 35 root - INFO - Model Training sstared
+[ 2025-10-26 17:42:08,470 ] 47 root - INFO - Entered the save_object method of MainUtils class
+[ 2025-10-26 17:42:08,471 ] 51 root - INFO - Exited the save_object method of MainUtils class
+[ 2025-10-26 17:42:08,472 ] 149 root - INFO - Model trainer artifact: ModelTrainerArtifact(trained_model_file_path='Artifacts\\10_26_2025_17_23_23\\model_trainer\\trained_model\\model.pkl', train_metric_artifact=RegressionMetric(rmse=0.2358727792247757, mae=0.18592034611453018, r2_score=0.9699428701112984), test_metric_artifact=RegressionMetric(rmse=0.38080020323842323, mae=0.29492334147967675, r2_score=0.9189975903570355))
+[ 2025-10-26 17:42:08,475 ] 40 root - INFO - Model Training artifact created
