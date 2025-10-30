@@ -1,0 +1,39 @@
+depth:
+  drift_status: false
+  p_value: 0.6684513126758544
+dmin:
+  drift_status: true
+  p_value: .nan
+gap:
+  drift_status: true
+  p_value: .nan
+id:
+  drift_status: false
+  p_value: 0.1694871321349607
+latitude:
+  drift_status: true
+  p_value: 0.011487395612699148
+longitude:
+  drift_status: true
+  p_value: 0.023701908081024226
+mag:
+  drift_status: true
+  p_value: 0.03537484528730931
+magType:
+  drift_status: false
+  p_value: 0.8527373765755081
+net:
+  drift_status: false
+  p_value: 0.8234152492892212
+nst:
+  drift_status: true
+  p_value: .nan
+rms:
+  drift_status: true
+  p_value: .nan
+time:
+  drift_status: false
+  p_value: 0.18008140352893517
+updated:
+  drift_status: false
+  p_value: 0.25484832597218116

@@ -3,8 +3,8 @@ from Earthquake_Magnitude_Estimation.exception.exception import Earthquake_Magni
 from Earthquake_Magnitude_Estimation.logging.logger import logging
 import os,sys
 import numpy as np
-#import dill
 import pickle
+import xgboost as xgb
 
 from sklearn.metrics import r2_score
 from sklearn.model_selection import GridSearchCV
@@ -81,26 +81,53 @@ def evaluate_models(X_train, y_train,X_test,y_test,models,param):
         report = {}
 
         for i in range(len(list(models))):
+            model_name = list(models.keys())[i]
             model = list(models.values())[i]
-            para=param[list(models.keys())[i]]
+            para = param[model_name]
 
-            gs = GridSearchCV(model,para,cv=3)
-            gs.fit(X_train,y_train)
+            logging.info(f"\n{'='*50}")
+            logging.info(f"Training {model_name}...")
+            logging.info(f"Parameters to be tuned: {para}")
+            logging.info(f"{'='*50}\n")
 
+            if model_name == "XGBoost":
+                # Create evaluation set for XGBoost
+                eval_set = [(X_test, y_test)]
+                fit_params = {
+                    "eval_set": eval_set,
+                    "verbose": True
+                }
+
+            # Grid search with cross-validation
+            logging.info("Starting GridSearchCV...")
+            gs = GridSearchCV(model, para, cv=3, verbose=2, n_jobs=-1)
+            
+            if model_name == "XGBoost":
+                gs.fit(X_train, y_train, **fit_params)
+            else:
+                gs.fit(X_train, y_train)
+            
+            logging.info(f"\nBest parameters found: {gs.best_params_}")
+            logging.info(f"Best cross-validation score: {gs.best_score_:.4f}")
+
+            # Update model with best parameters and train final model
             model.set_params(**gs.best_params_)
-            model.fit(X_train,y_train)
+            logging.info("\nTraining final model with best parameters...")
+            
+            if model_name == "XGBoost":
+                model.fit(X_train, y_train, eval_set=[(X_test, y_test)], verbose=True)
+            else:
+                model.fit(X_train, y_train)
 
-            #model.fit(X_train, y_train)  # Train model
-
+            # Make predictions
             y_train_pred = model.predict(X_train)
-
             y_test_pred = model.predict(X_test)
 
+            # Calculate scores
             train_model_score = r2_score(y_train, y_train_pred)
-
             test_model_score = r2_score(y_test, y_test_pred)
 
-            report[list(models.keys())[i]] = test_model_score
+            report[model_name] = test_model_score
 
         return report
 

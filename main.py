@@ -40,4 +40,4 @@ if __name__ == "__main__":
         logging.info("Model Training artifact created")
 
     except Exception as e:
-        raise Earthquake_Magnitude_EstimationException(e, sys) 
+        raise Earthquake_Magnitude_EstimationException(e, sys)

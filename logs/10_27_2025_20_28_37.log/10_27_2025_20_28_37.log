@@ -1,0 +1,67 @@
+[ 2025-10-27 20:28:38,071 ] 161 numexpr.utils - INFO - NumExpr defaulting to 12 threads.
+[ 2025-10-27 20:28:45,501 ] 19 root - INFO - Initiated the data ingestion component
+[ 2025-10-27 20:28:47,849 ] 65 root - INFO - Performed train test split on the dataframe
+[ 2025-10-27 20:28:47,849 ] 67 root - INFO - Exited split_data_as_train_test method of Data_Ingestion class
+[ 2025-10-27 20:28:47,851 ] 75 root - INFO - Exporting train and test file path.
+[ 2025-10-27 20:28:47,900 ] 84 root - INFO - Exported train and test file path.
+[ 2025-10-27 20:28:47,904 ] 21 root - INFO - Completed the data ingestion component
+[ 2025-10-27 20:28:47,907 ] 25 root - INFO - Initiated the data validation component
+[ 2025-10-27 20:28:47,962 ] 32 root - INFO - Required number of columns:1
+[ 2025-10-27 20:28:47,962 ] 33 root - INFO - Data frame has columns:13
+[ 2025-10-27 20:28:47,962 ] 32 root - INFO - Required number of columns:1
+[ 2025-10-27 20:28:47,962 ] 33 root - INFO - Data frame has columns:13
+[ 2025-10-27 20:28:48,061 ] 29 root - INFO - Initiated the data transformation component
+[ 2025-10-27 20:28:48,061 ] 89 root - INFO - Entered initiate_data_transformation method of DataTransformation class
+[ 2025-10-27 20:28:48,138 ] 110 root - INFO - Numeric columns: ['time', 'latitude', 'longitude', 'depth', 'nst', 'gap', 'dmin', 'rms', 'updated']
+[ 2025-10-27 20:28:48,138 ] 111 root - INFO - Categorical columns: ['magType', 'net', 'id']
+[ 2025-10-27 20:28:48,138 ] 65 root - INFO - Initializing numeric and categorical transformation pipelines
+[ 2025-10-27 20:28:59,593 ] 47 root - INFO - Entered the save_object method of MainUtils class
+[ 2025-10-27 20:28:59,595 ] 51 root - INFO - Exited the save_object method of MainUtils class
+[ 2025-10-27 20:28:59,595 ] 47 root - INFO - Entered the save_object method of MainUtils class
+[ 2025-10-27 20:28:59,596 ] 51 root - INFO - Exited the save_object method of MainUtils class
+[ 2025-10-27 20:28:59,596 ] 143 root - INFO - Saved transformed train CSV at: Artifacts\10_27_2025_20_28_38\data_transformation\transformed\train.csv
+[ 2025-10-27 20:28:59,597 ] 144 root - INFO - Saved transformed test CSV at: Artifacts\10_27_2025_20_28_38\data_transformation\transformed\test.csv
+[ 2025-10-27 20:28:59,597 ] 145 root - INFO - Data transformation completed successfully
+[ 2025-10-27 20:28:59,617 ] 33 root - INFO - Completed the data transformation component
+[ 2025-10-27 20:28:59,617 ] 35 root - INFO - Model Training sstared
+[ 2025-10-27 20:28:59,745 ] 64 root - INFO - Starting model training...
+[ 2025-10-27 20:28:59,745 ] 88 root - INFO - 
+==================================================
+[ 2025-10-27 20:28:59,745 ] 89 root - INFO - Training XGBoost...
+[ 2025-10-27 20:28:59,745 ] 90 root - INFO - Parameters to be tuned: {'n_estimators': [100, 200, 500], 'max_depth': [3, 5, 7, 9], 'learning_rate': [0.01, 0.05, 0.1], 'subsample': [0.8, 0.9, 1.0], 'colsample_bytree': [0.8, 0.9, 1.0], 'tree_method': ['hist'], 'device': ['cuda']}
+[ 2025-10-27 20:28:59,745 ] 91 root - INFO - ==================================================
+
+[ 2025-10-27 20:28:59,745 ] 102 root - INFO - Starting GridSearchCV...
+[ 2025-10-27 22:30:09,011 ] 110 root - INFO - 
+Best parameters found: {'colsample_bytree': 0.8, 'device': 'cuda', 'learning_rate': 0.05, 'max_depth': 5, 'n_estimators': 500, 'subsample': 0.8, 'tree_method': 'hist'}
+[ 2025-10-27 22:30:09,013 ] 111 root - INFO - Best cross-validation score: 0.9103
+[ 2025-10-27 22:30:09,013 ] 115 root - INFO - 
+Training final model with best parameters...
+[ 2025-10-27 22:30:17,327 ] 88 root - INFO - 
+==================================================
+[ 2025-10-27 22:30:17,327 ] 89 root - INFO - Training LightGBM...
+[ 2025-10-27 22:30:17,327 ] 90 root - INFO - Parameters to be tuned: {'n_estimators': [100, 200, 500], 'num_leaves': [31, 63, 127], 'learning_rate': [0.01, 0.05, 0.1], 'subsample': [0.8, 0.9, 1.0], 'colsample_bytree': [0.8, 0.9, 1.0], 'device': ['gpu'], 'gpu_platform_id': [0], 'gpu_device_id': [0]}
+[ 2025-10-27 22:30:17,327 ] 91 root - INFO - ==================================================
+
+[ 2025-10-27 22:30:17,328 ] 102 root - INFO - Starting GridSearchCV...
+[ 2025-10-27 23:32:35,153 ] 110 root - INFO - 
+Best parameters found: {'colsample_bytree': 0.8, 'device': 'gpu', 'gpu_device_id': 0, 'gpu_platform_id': 0, 'learning_rate': 0.01, 'n_estimators': 500, 'num_leaves': 31, 'subsample': 0.9}
+[ 2025-10-27 23:32:35,153 ] 111 root - INFO - Best cross-validation score: 0.9092
+[ 2025-10-27 23:32:35,154 ] 115 root - INFO - 
+Training final model with best parameters...
+[ 2025-10-27 23:32:40,562 ] 88 root - INFO - 
+==================================================
+[ 2025-10-27 23:32:40,562 ] 89 root - INFO - Training Linear Regression...
+[ 2025-10-27 23:32:40,562 ] 90 root - INFO - Parameters to be tuned: {}
+[ 2025-10-27 23:32:40,562 ] 91 root - INFO - ==================================================
+
+[ 2025-10-27 23:32:40,563 ] 102 root - INFO - Starting GridSearchCV...
+[ 2025-10-27 23:33:43,211 ] 110 root - INFO - 
+Best parameters found: {}
+[ 2025-10-27 23:33:43,211 ] 111 root - INFO - Best cross-validation score: 0.8538
+[ 2025-10-27 23:33:43,211 ] 115 root - INFO - 
+Training final model with best parameters...
+[ 2025-10-27 23:34:09,496 ] 47 root - INFO - Entered the save_object method of MainUtils class
+[ 2025-10-27 23:34:09,511 ] 51 root - INFO - Exited the save_object method of MainUtils class
+[ 2025-10-27 23:34:09,511 ] 150 root - INFO - Model trainer artifact: ModelTrainerArtifact(trained_model_file_path='Artifacts\\10_27_2025_20_28_38\\model_trainer\\trained_model\\model.pkl', train_metric_artifact=RegressionMetric(rmse=0.33350262320912416, mae=0.2577789831148005, r2_score=0.9386221733740304), test_metric_artifact=RegressionMetric(rmse=0.3841474877451736, mae=0.28873365648339583, r2_score=0.9239145200814081))
+[ 2025-10-27 23:34:09,536 ] 40 root - INFO - Model Training artifact created

@@ -1,0 +1,26 @@
+[ 2025-10-27 19:10:52,952 ] 161 numexpr.utils - INFO - NumExpr defaulting to 12 threads.
+[ 2025-10-27 19:10:58,806 ] 19 root - INFO - Initiated the data ingestion component
+[ 2025-10-27 19:11:02,262 ] 65 root - INFO - Performed train test split on the dataframe
+[ 2025-10-27 19:11:02,262 ] 67 root - INFO - Exited split_data_as_train_test method of Data_Ingestion class
+[ 2025-10-27 19:11:02,263 ] 75 root - INFO - Exporting train and test file path.
+[ 2025-10-27 19:11:02,304 ] 84 root - INFO - Exported train and test file path.
+[ 2025-10-27 19:11:02,308 ] 21 root - INFO - Completed the data ingestion component
+[ 2025-10-27 19:11:02,311 ] 25 root - INFO - Initiated the data validation component
+[ 2025-10-27 19:11:02,363 ] 32 root - INFO - Required number of columns:1
+[ 2025-10-27 19:11:02,363 ] 33 root - INFO - Data frame has columns:13
+[ 2025-10-27 19:11:02,363 ] 32 root - INFO - Required number of columns:1
+[ 2025-10-27 19:11:02,363 ] 33 root - INFO - Data frame has columns:13
+[ 2025-10-27 19:11:02,451 ] 29 root - INFO - Initiated the data transformation component
+[ 2025-10-27 19:11:02,452 ] 89 root - INFO - Entered initiate_data_transformation method of DataTransformation class
+[ 2025-10-27 19:11:02,528 ] 110 root - INFO - Numeric columns: ['time', 'latitude', 'longitude', 'depth', 'nst', 'gap', 'dmin', 'rms', 'updated']
+[ 2025-10-27 19:11:02,528 ] 111 root - INFO - Categorical columns: ['magType', 'net', 'id']
+[ 2025-10-27 19:11:02,528 ] 65 root - INFO - Initializing numeric and categorical transformation pipelines
+[ 2025-10-27 19:11:13,791 ] 47 root - INFO - Entered the save_object method of MainUtils class
+[ 2025-10-27 19:11:13,793 ] 51 root - INFO - Exited the save_object method of MainUtils class
+[ 2025-10-27 19:11:13,793 ] 47 root - INFO - Entered the save_object method of MainUtils class
+[ 2025-10-27 19:11:13,794 ] 51 root - INFO - Exited the save_object method of MainUtils class
+[ 2025-10-27 19:11:13,794 ] 143 root - INFO - Saved transformed train CSV at: Artifacts\10_27_2025_19_10_53\data_transformation\transformed\train.csv
+[ 2025-10-27 19:11:13,794 ] 144 root - INFO - Saved transformed test CSV at: Artifacts\10_27_2025_19_10_53\data_transformation\transformed\test.csv
+[ 2025-10-27 19:11:13,794 ] 145 root - INFO - Data transformation completed successfully
+[ 2025-10-27 19:11:13,826 ] 33 root - INFO - Completed the data transformation component
+[ 2025-10-27 19:11:13,827 ] 35 root - INFO - Model Training sstared

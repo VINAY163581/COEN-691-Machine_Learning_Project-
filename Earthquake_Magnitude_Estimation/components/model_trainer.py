@@ -14,19 +14,14 @@ from Earthquake_Magnitude_Estimation.utils.main_utils.utils import save_object,l
 from Earthquake_Magnitude_Estimation.utils.main_utils.utils import load_numpy_array_data,evaluate_models
 from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
 
+import xgboost as xgb
+import lightgbm as lgb
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import r2_score
-from sklearn.neighbors import KNeighborsRegressor
-from sklearn.tree import DecisionTreeRegressor
-from sklearn.ensemble import (
-    AdaBoostRegressor,
-    GradientBoostingRegressor,
-    RandomForestRegressor,
-)
-import mlflow
+# import mlflow
 from urllib.parse import urlparse
 
-import dagshub
+# import dagshub
 # Configure MLflow tracking
 os.environ["MLFLOW_TRACKING_URI"]="https://dagshub.com/Mohammad-Riyazuddin/COEN-691-Machine_Learning_Project-.mlflow"
 
@@ -66,36 +61,49 @@ class ModelTrainer:
 
         
     def train_model(self,X_train,y_train,x_test,y_test):
+        logging.info("Starting model training...")
+        # Initialize models with base configurations
         models = {
-                "Random Forest": RandomForestRegressor(verbose=1),
-                "Decision Tree": DecisionTreeRegressor(),
-                "Gradient Boosting": GradientBoostingRegressor(verbose=1),
+                "XGBoost": xgb.XGBRegressor(
+                    tree_method='hist',
+                    device='cuda',  # Use GPU
+                    objective='reg:squarederror',
+                    verbosity=2,  # Maximum verbosity
+                    n_estimators=100,  # Initial value, will be tuned
+                ),
+                "LightGBM": lgb.LGBMRegressor(
+                    device='gpu',  # Use GPU
+                    gpu_platform_id=0,
+                    gpu_device_id=0,
+                    verbose=2,  # Maximum verbosity
+                    n_jobs=-1,  # Use all CPU cores for parallel operations
+                    importance_type='gain',  # Show feature importance
+                ),
                 "Linear Regression": LinearRegression(),
-                "AdaBoost": AdaBoostRegressor(),
             }
+        
+        # Define parameter grids for hyperparameter tuning
         params={
-            "Decision Tree": {
-                'criterion':['squared_error', 'friedman_mse', 'absolute_error', 'poisson'],
-                'max_depth': [None, 5, 10, 15],
-                'min_samples_split': [2, 5, 10],
+            "XGBoost":{
+                'n_estimators': [100, 200, 500],
+                'max_depth': [3, 5, 7, 9],
+                'learning_rate': [0.01, 0.05, 0.1],
+                'subsample': [0.8, 0.9, 1.0],
+                'colsample_bytree': [0.8, 0.9, 1.0],
+                'tree_method': ['hist'],  # Keep GPU-compatible method
+                'device': ['cuda'],  # Keep GPU device
             },
-            "Random Forest":{
-                'n_estimators': [8,16,32,64,128,256],
-                'max_depth': [None, 10, 20, 30],
-                'min_samples_split': [2, 5, 10],
+            "LightGBM":{
+                'n_estimators': [100, 200, 500],
+                'num_leaves': [31, 63, 127],
+                'learning_rate': [0.01, 0.05, 0.1],
+                'subsample': [0.8, 0.9, 1.0],
+                'colsample_bytree': [0.8, 0.9, 1.0],
+                'device': ['gpu'],  # Keep GPU device
+                'gpu_platform_id': [0],
+                'gpu_device_id': [0],
             },
-            "Gradient Boosting":{
-                'learning_rate':[.1,.01,.05,.001],
-                'subsample':[0.6,0.7,0.75,0.85,0.9],
-                'n_estimators': [8,16,32,64,128,256],
-                'max_depth': [3, 4, 5, 6],
-            },
-            "Linear Regression":{},
-            "AdaBoost":{
-                'learning_rate':[.1,.01,.001],
-                'n_estimators': [8,16,32,64,128,256],
-                'loss': ['linear', 'square', 'exponential']
-            }
+            "Linear Regression":{}
         }
         model_report:dict=evaluate_models(X_train=X_train,y_train=y_train,X_test=x_test,y_test=y_test,
                                           models=models,param=params)

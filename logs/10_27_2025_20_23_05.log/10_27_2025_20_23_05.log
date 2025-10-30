@@ -1,0 +1,36 @@
+[ 2025-10-27 20:23:05,956 ] 161 numexpr.utils - INFO - NumExpr defaulting to 12 threads.
+[ 2025-10-27 20:23:11,671 ] 19 root - INFO - Initiated the data ingestion component
+[ 2025-10-27 20:23:14,108 ] 65 root - INFO - Performed train test split on the dataframe
+[ 2025-10-27 20:23:14,108 ] 67 root - INFO - Exited split_data_as_train_test method of Data_Ingestion class
+[ 2025-10-27 20:23:14,109 ] 75 root - INFO - Exporting train and test file path.
+[ 2025-10-27 20:23:14,148 ] 84 root - INFO - Exported train and test file path.
+[ 2025-10-27 20:23:14,151 ] 21 root - INFO - Completed the data ingestion component
+[ 2025-10-27 20:23:14,154 ] 25 root - INFO - Initiated the data validation component
+[ 2025-10-27 20:23:14,204 ] 32 root - INFO - Required number of columns:1
+[ 2025-10-27 20:23:14,204 ] 33 root - INFO - Data frame has columns:13
+[ 2025-10-27 20:23:14,204 ] 32 root - INFO - Required number of columns:1
+[ 2025-10-27 20:23:14,205 ] 33 root - INFO - Data frame has columns:13
+[ 2025-10-27 20:23:14,297 ] 29 root - INFO - Initiated the data transformation component
+[ 2025-10-27 20:23:14,297 ] 89 root - INFO - Entered initiate_data_transformation method of DataTransformation class
+[ 2025-10-27 20:23:14,370 ] 110 root - INFO - Numeric columns: ['time', 'latitude', 'longitude', 'depth', 'nst', 'gap', 'dmin', 'rms', 'updated']
+[ 2025-10-27 20:23:14,370 ] 111 root - INFO - Categorical columns: ['magType', 'net', 'id']
+[ 2025-10-27 20:23:14,370 ] 65 root - INFO - Initializing numeric and categorical transformation pipelines
+[ 2025-10-27 20:23:25,877 ] 47 root - INFO - Entered the save_object method of MainUtils class
+[ 2025-10-27 20:23:25,880 ] 51 root - INFO - Exited the save_object method of MainUtils class
+[ 2025-10-27 20:23:25,880 ] 47 root - INFO - Entered the save_object method of MainUtils class
+[ 2025-10-27 20:23:25,881 ] 51 root - INFO - Exited the save_object method of MainUtils class
+[ 2025-10-27 20:23:25,881 ] 143 root - INFO - Saved transformed train CSV at: Artifacts\10_27_2025_20_23_06\data_transformation\transformed\train.csv
+[ 2025-10-27 20:23:25,881 ] 144 root - INFO - Saved transformed test CSV at: Artifacts\10_27_2025_20_23_06\data_transformation\transformed\test.csv
+[ 2025-10-27 20:23:25,881 ] 145 root - INFO - Data transformation completed successfully
+[ 2025-10-27 20:23:25,905 ] 33 root - INFO - Completed the data transformation component
+[ 2025-10-27 20:23:25,905 ] 35 root - INFO - Model Training sstared
+[ 2025-10-27 20:23:26,019 ] 64 root - INFO - Starting model training...
+[ 2025-10-27 20:23:26,019 ] 88 root - INFO - 
+==================================================
+[ 2025-10-27 20:23:26,019 ] 89 root - INFO - Training XGBoost...
+[ 2025-10-27 20:23:26,019 ] 90 root - INFO - Parameters to be tuned: {'n_estimators': [100, 200, 500], 'max_depth': [3, 5, 7, 9], 'learning_rate': [0.01, 0.05, 0.1], 'subsample': [0.8, 0.9, 1.0], 'colsample_bytree': [0.8, 0.9, 1.0], 'tree_method': ['hist'], 'device': ['cuda']}
+[ 2025-10-27 20:23:26,019 ] 91 root - INFO - ==================================================
+
+[ 2025-10-27 20:23:26,019 ] 95 root - INFO - Setting up XGBoost with GPU support...
+[ 2025-10-27 20:23:26,277 ] 106 root - INFO - XGBoost GPU configuration complete
+[ 2025-10-27 20:23:26,277 ] 109 root - INFO - Starting GridSearchCV...
