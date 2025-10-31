@@ -26,6 +26,7 @@ from sklearn.ensemble import (
 import mlflow
 from urllib.parse import urlparse
 
+
 import dagshub
 # Configure MLflow tracking
 os.environ["MLFLOW_TRACKING_URI"]="https://dagshub.com/Mohammad-Riyazuddin/COEN-691-Machine_Learning_Project-.mlflow"
@@ -41,6 +42,18 @@ class ModelTrainer:
             self.data_transformation_artifact=data_transformation_artifact
         except Exception as e:
             raise Earthquake_Magnitude_EstimationException(e,sys)
+        
+        def track_mlflow(self, best_model, classificationmetric):
+            with mlflow.start_run():
+                f1_score = classificationmetric.f1_score
+                precision_score = classificationmetric.precision_score
+                recall_score = classificationmetric.recall_score
+
+                mlflow.log_metric("f1_score", f1_score)
+                mlflow.log_metric("precision", precision_score)
+                mlflow.log_metric("recall", recall_score)
+                
+                mlflow.sklearn.log_model(best_model, "model")
         
     def track_mlflow(self, best_model, regressionmetric):
         mlflow.set_registry_uri("https://dagshub.com/krishnaik06/networksecurity.mlflow")
@@ -121,7 +134,9 @@ class ModelTrainer:
         test_metric = get_regression_score(y_true=y_test, y_pred=y_test_pred)
         
         ## Track the experiments with mlflow
-        # self.track_mlflow(best_model, test_metric)
+        self.track_mlflow(best_model, train_metric)
+
+        self.track_mlflow(best_model, test_metric)
 
         preprocessor = load_object(file_path=self.data_transformation_artifact.transformed_object_file_path)
             
