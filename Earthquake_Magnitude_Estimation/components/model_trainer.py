@@ -27,13 +27,8 @@ import mlflow
 from urllib.parse import urlparse
 
 
-import dagshub
-# Configure MLflow tracking
-os.environ["MLFLOW_TRACKING_URI"]="https://dagshub.com/Mohammad-Riyazuddin/COEN-691-Machine_Learning_Project-.mlflow"
-
-
-
-
+# import dagshub
+# dagshub.init(repo_owner='Harshilsinh7275', repo_name='cloud_run_tut', mlflow=True)
 
 class ModelTrainer:
     def __init__(self,model_trainer_config:ModelTrainerConfig,data_transformation_artifact:DataTransformationArtifact):
@@ -42,21 +37,8 @@ class ModelTrainer:
             self.data_transformation_artifact=data_transformation_artifact
         except Exception as e:
             raise Earthquake_Magnitude_EstimationException(e,sys)
-        
-        def track_mlflow(self, best_model, classificationmetric):
-            with mlflow.start_run():
-                f1_score = classificationmetric.f1_score
-                precision_score = classificationmetric.precision_score
-                recall_score = classificationmetric.recall_score
-
-                mlflow.log_metric("f1_score", f1_score)
-                mlflow.log_metric("precision", precision_score)
-                mlflow.log_metric("recall", recall_score)
-                
-                mlflow.sklearn.log_model(best_model, "model")
-        
+              
     def track_mlflow(self, best_model, regressionmetric):
-        mlflow.set_registry_uri("https://dagshub.com/krishnaik06/networksecurity.mlflow")
         tracking_url_type_store = urlparse(mlflow.get_tracking_uri()).scheme
         with mlflow.start_run():
             rmse = regressionmetric.rmse
