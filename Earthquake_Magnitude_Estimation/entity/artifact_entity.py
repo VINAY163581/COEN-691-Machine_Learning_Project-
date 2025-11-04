@@ -21,6 +21,15 @@ class DataTransformationArtifact:
     transformed_test_file_path: str
 
 @dataclass
+class DataVisualizationArtifact:
+    train_correlation_heatmap_path: str
+    test_correlation_heatmap_path: str
+    train_numeric_distribution_dir: str
+    test_numeric_distribution_dir: str
+    train_categorical_distribution_dir: str
+    test_categorical_distribution_dir: str
+
+@dataclass
 class RegressionMetricArtifact:
     rmse: float
     mae: float
@@ -31,3 +40,4 @@ class ModelTrainerArtifact:
     trained_model_file_path: str
     train_metric_artifact: RegressionMetricArtifact
     test_metric_artifact: RegressionMetricArtifact
+

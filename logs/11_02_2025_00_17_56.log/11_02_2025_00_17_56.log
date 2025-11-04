@@ -1,0 +1,47 @@
+[ 2025-11-02 00:17:57,663 ] 69 root - INFO - Initiated the data ingestion component
+[ 2025-11-02 00:17:59,925 ] 65 root - INFO - Performed train test split on the dataframe
+[ 2025-11-02 00:17:59,925 ] 67 root - INFO - Exited split_data_as_train_test method of Data_Ingestion class
+[ 2025-11-02 00:17:59,926 ] 75 root - INFO - Exporting train and test file path.
+[ 2025-11-02 00:17:59,942 ] 84 root - INFO - Exported train and test file path.
+[ 2025-11-02 00:17:59,943 ] 71 root - INFO - Completed the data ingestion component
+[ 2025-11-02 00:17:59,944 ] 22 root - INFO - DataValidation initialized successfully.
+[ 2025-11-02 00:17:59,944 ] 77 root - INFO - Initiated the data validation component
+[ 2025-11-02 00:17:59,944 ] 106 root - INFO - 🚀 Starting data validation process...
+[ 2025-11-02 00:17:59,944 ] 30 root - INFO - Reading data from file: Artifacts/11_02_2025_00_17_56/data_ingestion/ingested/train.csv
+[ 2025-11-02 00:17:59,954 ] 30 root - INFO - Reading data from file: Artifacts/11_02_2025_00_17_56/data_ingestion/ingested/test.csv
+[ 2025-11-02 00:17:59,958 ] 64 root - INFO - Starting dataset drift detection...
+[ 2025-11-02 00:17:59,958 ] 90 root - INFO - Drift report generated at: Artifacts/11_02_2025_00_17_56/data_validation/drift_report/report.yaml
+[ 2025-11-02 00:17:59,971 ] 133 root - INFO - ✅ Validated train file saved at: Artifacts/11_02_2025_00_17_56/data_validation/validated/train.csv
+[ 2025-11-02 00:17:59,971 ] 134 root - INFO - ✅ Validated test file saved at: Artifacts/11_02_2025_00_17_56/data_validation/validated/test.csv
+[ 2025-11-02 00:17:59,971 ] 146 root - INFO - 🏁 Data Validation completed successfully.
+[ 2025-11-02 00:17:59,971 ] 147 root - INFO - Data Validation Artifact: DataValidationArtifact(validation_status=True, valid_train_file_path='Artifacts/11_02_2025_00_17_56/data_validation/validated/train.csv', valid_test_file_path='Artifacts/11_02_2025_00_17_56/data_validation/validated/test.csv', invalid_train_file_path=None, invalid_test_file_path=None, drift_report_file_path='Artifacts/11_02_2025_00_17_56/data_validation/drift_report/report.yaml')
+[ 2025-11-02 00:17:59,971 ] 83 root - INFO - Initiated the data transformation component
+[ 2025-11-02 00:17:59,971 ] 88 root - INFO - Starting data transformation process...
+[ 2025-11-02 00:17:59,971 ] 29 root - INFO - Reading data from file: Artifacts/11_02_2025_00_17_56/data_validation/validated/train.csv
+[ 2025-11-02 00:17:59,979 ] 29 root - INFO - Reading data from file: Artifacts/11_02_2025_00_17_56/data_validation/validated/test.csv
+[ 2025-11-02 00:17:59,981 ] 36 root - INFO - Preprocessing dataframe...
+[ 2025-11-02 00:17:59,992 ] 55 root - INFO - Dataframe preprocessing completed.
+[ 2025-11-02 00:17:59,992 ] 36 root - INFO - Preprocessing dataframe...
+[ 2025-11-02 00:17:59,996 ] 55 root - INFO - Dataframe preprocessing completed.
+[ 2025-11-02 00:17:59,997 ] 109 root - INFO - Numerical columns: ['time', 'latitude', 'longitude', 'depth', 'nst', 'gap', 'dmin', 'rms', 'updated']
+[ 2025-11-02 00:17:59,997 ] 110 root - INFO - Categorical columns: ['magType', 'net', 'id', 'place']
+[ 2025-11-02 00:17:59,997 ] 63 root - INFO - Creating data transformer object...
+[ 2025-11-02 00:17:59,997 ] 80 root - INFO - Data transformer object created successfully.
+[ 2025-11-02 00:17:59,997 ] 116 root - INFO - Fitting and transforming training data...
+[ 2025-11-02 00:18:00,099 ] 120 root - INFO - Transforming test data...
+[ 2025-11-02 00:18:00,157 ] 47 root - INFO - Entered the save_object method of MainUtils class
+[ 2025-11-02 00:18:00,158 ] 51 root - INFO - Exited the save_object method of MainUtils class
+[ 2025-11-02 00:18:00,158 ] 134 root - INFO - Data transformation completed successfully.
+[ 2025-11-02 00:18:00,160 ] 87 root - INFO - Completed the data transformation component
+[ 2025-11-02 00:18:00,160 ] 91 root - INFO - Initiated the data visualization component
+[ 2025-11-02 00:18:00,160 ] 67 root - INFO - Initiated the data visualization component
+[ 2025-11-02 00:18:00,160 ] 36 root - INFO - Loading transformed data from: Artifacts/11_02_2025_00_17_56/data_transformation/transformed/train.npy
+[ 2025-11-02 00:18:00,164 ] 36 root - INFO - Loading transformed data from: Artifacts/11_02_2025_00_17_56/data_transformation/transformed/test.npy
+[ 2025-11-02 00:22:51,525 ] 57 root - INFO - Correlation heatmap saved at: Artifacts/11_02_2025_00_17_56/data_visualization/train_correlation_heatmap.png
+[ 2025-11-02 00:24:54,502 ] 57 root - INFO - Correlation heatmap saved at: Artifacts/11_02_2025_00_17_56/data_visualization/test_correlation_heatmap.png
+[ 2025-11-02 00:24:54,503 ] 98 root - INFO - Data visualization completed successfully.
+[ 2025-11-02 00:24:54,504 ] 98 root - INFO - Completed the data visualization component
+[ 2025-11-02 00:24:54,504 ] 101 root - INFO - Model training started
+[ 2025-11-02 00:24:54,504 ] 32 root - INFO - >>>>>>>>>>>>>>>>>>>> Model Trainer Initiated <<<<<<<<<<<<<<<<<<<<
+[ 2025-11-02 00:24:54,538 ] 72 root - INFO - NaNs in y_train after cleaning: 0
+[ 2025-11-02 00:24:54,538 ] 73 root - INFO - NaNs in y_test after cleaning: 0

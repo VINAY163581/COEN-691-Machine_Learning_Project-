@@ -55,6 +55,19 @@ DATA_TRANSFORMATION_TRAIN_FILE_PATH: str = "train.npy"
 DATA_TRANSFORMATION_TEST_FILE_PATH: str = "test.npy"
 
 """
+Data Visualization related constant start with DATA_VISUALIZATION VAR NAME
+"""
+
+DATA_VISUALIZATION_DIR_NAME = "data_visualization"
+TRAIN_CORRELATION_HEATMAP_FILE_NAME = "train_correlation_heatmap.png"
+TEST_CORRELATION_HEATMAP_FILE_NAME = "test_correlation_heatmap.png"
+TRAIN_NUMERIC_DISTRIBUTION_DIR = "train_numeric_distributions"
+TEST_NUMERIC_DISTRIBUTION_DIR = "test_numeric_distributions"
+TRAIN_CATEGORICAL_DISTRIBUTION_DIR = "train_categorical_distributions"
+TEST_CATEGORICAL_DISTRIBUTION_DIR = "test_categorical_distributions"
+
+
+"""
 Model Trainer ralated constant start with MODE TRAINER VAR NAME
 """
 
