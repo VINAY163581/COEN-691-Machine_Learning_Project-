@@ -1,0 +1,66 @@
+depth:
+  drift_status: true
+  p_value: .nan
+depthError:
+  drift_status: true
+  p_value: .nan
+dmin:
+  drift_status: true
+  p_value: .nan
+gap:
+  drift_status: true
+  p_value: .nan
+horizontalError:
+  drift_status: true
+  p_value: .nan
+id:
+  drift_status: false
+  p_value: 0.5813759504268157
+latitude:
+  drift_status: false
+  p_value: 0.4197781369856095
+locationSource:
+  drift_status: true
+  p_value: .nan
+longitude:
+  drift_status: false
+  p_value: 0.9055119793852685
+mag:
+  drift_status: false
+  p_value: 0.8873643928529147
+magError:
+  drift_status: true
+  p_value: .nan
+magNst:
+  drift_status: true
+  p_value: .nan
+magSource:
+  drift_status: true
+  p_value: .nan
+magType:
+  drift_status: true
+  p_value: .nan
+net:
+  drift_status: false
+  p_value: 0.8887810758796247
+nst:
+  drift_status: true
+  p_value: .nan
+place:
+  drift_status: true
+  p_value: .nan
+rms:
+  drift_status: true
+  p_value: .nan
+status:
+  drift_status: true
+  p_value: .nan
+time:
+  drift_status: false
+  p_value: 0.5448969633014705
+type:
+  drift_status: true
+  p_value: .nan
+updated:
+  drift_status: true
+  p_value: 0.012405311380989912
