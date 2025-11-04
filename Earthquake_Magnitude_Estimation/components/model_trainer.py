@@ -26,9 +26,9 @@ from sklearn.ensemble import (
 import mlflow
 from urllib.parse import urlparse
 
+import dagshub
+dagshub.init(repo_owner='VINAY163581', repo_name='COEN-691-Machine_Learning_Project-', mlflow=True)
 
-# import dagshub
-# dagshub.init(repo_owner='Harshilsinh7275', repo_name='cloud_run_tut', mlflow=True)
 
 class ModelTrainer:
     def __init__(self,model_trainer_config:ModelTrainerConfig,data_transformation_artifact:DataTransformationArtifact):
