@@ -1,0 +1,82 @@
+[ 2025-11-10 15:42:01,343 ] 87 root - INFO - ===== Starting Data Ingestion =====
+[ 2025-11-10 15:42:01,343 ] 103 root - INFO - >>>> Starting Data Ingestion <<<<
+[ 2025-11-10 15:42:01,343 ] 31 root - INFO - Connecting to MongoDB...
+[ 2025-11-10 15:42:01,660 ] 39 root - INFO - Reading data from MongoDB collection: Earthquake_Data.earthquake_collection
+[ 2025-11-10 15:42:03,466 ] 48 root - INFO - Data fetched from MongoDB: (5009, 23) rows
+[ 2025-11-10 15:42:03,532 ] 68 root - INFO - Feature store saved at: Artifacts\11_10_2025_15_41_39\data_ingestion\feature_store\dataset.csv
+[ 2025-11-10 15:42:03,532 ] 77 root - INFO - Splitting dataset: (5009, 22)
+[ 2025-11-10 15:42:03,575 ] 96 root - INFO - Train and test files generated successfully.
+[ 2025-11-10 15:42:03,577 ] 115 root - INFO - Data Ingestion Artifact Created: DataIngestionArtifact(trained_file_path='Artifacts\\11_10_2025_15_41_39\\data_ingestion\\ingested\\train.csv', test_file_path='Artifacts\\11_10_2025_15_41_39\\data_ingestion\\ingested\\test.csv')
+[ 2025-11-10 15:42:03,579 ] 91 root - INFO - Data Ingestion completed:
+DataIngestionArtifact(trained_file_path='Artifacts\\11_10_2025_15_41_39\\data_ingestion\\ingested\\train.csv', test_file_path='Artifacts\\11_10_2025_15_41_39\\data_ingestion\\ingested\\test.csv')
+
+[ 2025-11-10 15:42:03,579 ] 94 root - INFO - ===== Starting Data Validation =====
+[ 2025-11-10 15:42:03,588 ] 22 root - INFO - DataValidation initialized successfully.
+[ 2025-11-10 15:42:03,591 ] 106 root - INFO - \U0001f680 Starting data validation process...
+[ 2025-11-10 15:42:03,591 ] 30 root - INFO - Reading data from file: Artifacts\11_10_2025_15_41_39\data_ingestion\ingested\train.csv
+[ 2025-11-10 15:42:03,619 ] 30 root - INFO - Reading data from file: Artifacts\11_10_2025_15_41_39\data_ingestion\ingested\test.csv
+[ 2025-11-10 15:42:03,635 ] 64 root - INFO - Starting dataset drift detection...
+[ 2025-11-10 15:42:03,635 ] 90 root - INFO - Drift report generated at: Artifacts\11_10_2025_15_41_39\data_validation\drift_report\report.yaml
+[ 2025-11-10 15:42:03,672 ] 133 root - INFO - \u2705 Validated train file saved at: Artifacts\11_10_2025_15_41_39\data_validation\validated\train.csv
+[ 2025-11-10 15:42:03,672 ] 134 root - INFO - \u2705 Validated test file saved at: Artifacts\11_10_2025_15_41_39\data_validation\validated\test.csv
+[ 2025-11-10 15:42:03,672 ] 146 root - INFO - \U0001f3c1 Data Validation completed successfully.
+[ 2025-11-10 15:42:03,672 ] 147 root - INFO - Data Validation Artifact: DataValidationArtifact(validation_status=True, valid_train_file_path='Artifacts\\11_10_2025_15_41_39\\data_validation\\validated\\train.csv', valid_test_file_path='Artifacts\\11_10_2025_15_41_39\\data_validation\\validated\\test.csv', invalid_train_file_path=None, invalid_test_file_path=None, drift_report_file_path='Artifacts\\11_10_2025_15_41_39\\data_validation\\drift_report\\report.yaml')
+[ 2025-11-10 15:42:03,674 ] 101 root - INFO - Data Validation completed:
+DataValidationArtifact(validation_status=True, valid_train_file_path='Artifacts\\11_10_2025_15_41_39\\data_validation\\validated\\train.csv', valid_test_file_path='Artifacts\\11_10_2025_15_41_39\\data_validation\\validated\\test.csv', invalid_train_file_path=None, invalid_test_file_path=None, drift_report_file_path='Artifacts\\11_10_2025_15_41_39\\data_validation\\drift_report\\report.yaml')
+
+[ 2025-11-10 15:42:03,674 ] 104 root - INFO - ===== Starting Data Transformation =====
+[ 2025-11-10 15:42:03,674 ] 88 root - INFO - Starting data transformation process...
+[ 2025-11-10 15:42:03,674 ] 29 root - INFO - Reading data from file: Artifacts\11_10_2025_15_41_39\data_validation\validated\train.csv
+[ 2025-11-10 15:42:03,700 ] 29 root - INFO - Reading data from file: Artifacts\11_10_2025_15_41_39\data_validation\validated\test.csv
+[ 2025-11-10 15:42:03,715 ] 36 root - INFO - Preprocessing dataframe...
+[ 2025-11-10 15:42:03,742 ] 55 root - INFO - Dataframe preprocessing completed.
+[ 2025-11-10 15:42:03,742 ] 36 root - INFO - Preprocessing dataframe...
+[ 2025-11-10 15:42:03,750 ] 55 root - INFO - Dataframe preprocessing completed.
+[ 2025-11-10 15:42:03,754 ] 109 root - INFO - Numerical columns: ['time', 'latitude', 'longitude', 'depth', 'nst', 'gap', 'dmin', 'rms', 'updated']
+[ 2025-11-10 15:42:03,754 ] 110 root - INFO - Categorical columns: ['magType', 'net', 'id', 'place']
+[ 2025-11-10 15:42:03,754 ] 63 root - INFO - Creating data transformer object...
+[ 2025-11-10 15:42:03,754 ] 80 root - INFO - Data transformer object created successfully.
+[ 2025-11-10 15:42:03,754 ] 116 root - INFO - Fitting and transforming training data...
+[ 2025-11-10 15:42:04,189 ] 120 root - INFO - Transforming test data...
+[ 2025-11-10 15:42:04,308 ] 47 root - INFO - Entered the save_object method of MainUtils class
+[ 2025-11-10 15:42:04,308 ] 51 root - INFO - Exited the save_object method of MainUtils class
+[ 2025-11-10 15:42:04,308 ] 134 root - INFO - Data transformation completed successfully.
+[ 2025-11-10 15:42:04,318 ] 111 root - INFO - Data Transformation completed:
+DataTransformationArtifact(transformed_object_file_path='Artifacts\\11_10_2025_15_41_39\\data_transformation\\transformed_object\\preprocessing.pkl', transformed_train_file_path='Artifacts\\11_10_2025_15_41_39\\data_transformation\\transformed\\train.npy', transformed_test_file_path='Artifacts\\11_10_2025_15_41_39\\data_transformation\\transformed\\test.npy')
+
+[ 2025-11-10 15:42:04,318 ] 114 root - INFO - ===== Starting Data Visualization =====
+[ 2025-11-10 15:42:04,318 ] 147 root - INFO - \U0001f4ca Starting Visualization Stage...
+[ 2025-11-10 15:42:04,318 ] 37 root - INFO - Loading transformed data from: Artifacts\11_10_2025_15_41_39\data_transformation\transformed\train.npy
+[ 2025-11-10 15:42:05,093 ] 55 root - INFO - \u2705 Target distribution saved at: Artifacts\11_10_2025_15_41_39\data_visualization\target_distribution.png
+[ 2025-11-10 15:42:52,580 ] 69 root - INFO - \u2705 Correlation barplot saved at: Artifacts\11_10_2025_15_41_39\data_visualization\top_corr.png
+[ 2025-11-10 15:43:39,846 ] 84 root - INFO - \u2705 Heatmap saved at: Artifacts\11_10_2025_15_41_39\data_visualization\heatmap.png
+[ 2025-11-10 15:44:30,066 ] 99 root - INFO - \u2705 Pairplot saved at: Artifacts\11_10_2025_15_41_39\data_visualization\pairplot.png
+[ 2025-11-10 15:45:18,251 ] 121 root - INFO - \u2705 Feature vs Target scatterplots saved in Artifacts\11_10_2025_15_41_39\data_visualization\scatter_plots
+[ 2025-11-10 15:48:31,925 ] 138 root - INFO - \u2705 Boxplots saved in: Artifacts\11_10_2025_15_41_39\data_visualization\boxplots
+[ 2025-11-10 15:48:31,925 ] 173 root - INFO - \u2705 Visualization completed. Auto-triggering Model Trainer...
+[ 2025-11-10 15:48:31,925 ] 44 root - INFO - >>>>>>>>>>>>>>>>>>>> Model Trainer Initiated <<<<<<<<<<<<<<<<<<<<
+[ 2025-11-10 15:48:31,925 ] 294 root - INFO - Initiating model trainer pipeline...
+[ 2025-11-10 15:48:31,971 ] 175 root - INFO - Starting model training and hyperparameter tuning...
+[ 2025-11-10 15:48:31,988 ] 209 root - INFO - Cleaned NaNs - train: 0 | test: 0
+[ 2025-11-10 16:13:22,088 ] 239 root - INFO -  Model Evaluation Report saved at: Artifacts\11_10_2025_15_41_39\model_trainer\trained_model\evaluation\model_evaluation_report.csv
+[ 2025-11-10 16:13:22,325 ] 80 root - INFO - Saved plot: Artifacts\11_10_2025_15_41_39\model_trainer\trained_model\evaluation\plots\r2_score.png
+[ 2025-11-10 16:13:22,565 ] 80 root - INFO - Saved plot: Artifacts\11_10_2025_15_41_39\model_trainer\trained_model\evaluation\plots\rmse.png
+[ 2025-11-10 16:13:22,806 ] 80 root - INFO - Saved plot: Artifacts\11_10_2025_15_41_39\model_trainer\trained_model\evaluation\plots\mae.png
+[ 2025-11-10 16:13:23,273 ] 80 root - INFO - Saved plot: Artifacts\11_10_2025_15_41_39\model_trainer\trained_model\evaluation\plots\bias.png
+[ 2025-11-10 16:13:23,523 ] 80 root - INFO - Saved plot: Artifacts\11_10_2025_15_41_39\model_trainer\trained_model\evaluation\plots\variance.png
+[ 2025-11-10 16:13:23,523 ] 252 root - INFO -  Best model selected: Random Forest (R� = 0.9992)
+[ 2025-11-10 16:13:23,892 ] 97 root - INFO - Saved Predicted vs Actual: Artifacts\11_10_2025_15_41_39\model_trainer\trained_model\evaluation\plots\predicted_vs_actual.png
+[ 2025-11-10 16:13:24,151 ] 115 root - INFO - Saved Residual scatter: Artifacts\11_10_2025_15_41_39\model_trainer\trained_model\evaluation\plots\residuals_scatter.png
+[ 2025-11-10 16:13:24,364 ] 126 root - INFO - Saved Residual histogram: Artifacts\11_10_2025_15_41_39\model_trainer\trained_model\evaluation\plots\residuals_hist.png
+[ 2025-11-10 16:13:31,599 ] 158 root - INFO - Saved SHAP summary: Artifacts\11_10_2025_15_41_39\model_trainer\trained_model\evaluation\plots\shap_summary.png
+[ 2025-11-10 16:13:31,890 ] 167 root - INFO - Saved SHAP bar summary: Artifacts\11_10_2025_15_41_39\model_trainer\trained_model\evaluation\plots\shap_summary_bar.png
+[ 2025-11-10 16:13:31,890 ] 270 root - INFO - Training metrics: RegressionMetric(rmse=0.11696511289075903, mae=0.038412184466638875, r2_score=0.9994561807648715)
+[ 2025-11-10 16:13:31,890 ] 271 root - INFO - Testing metrics: RegressionMetric(rmse=0.14843758160356713, mae=0.04361160793950077, r2_score=0.9991064143742755)
+[ 2025-11-10 16:13:31,906 ] 47 root - INFO - Entered the save_object method of MainUtils class
+[ 2025-11-10 16:13:31,928 ] 51 root - INFO - Exited the save_object method of MainUtils class
+[ 2025-11-10 16:13:31,928 ] 278 root - INFO -  Best model saved successfully.
+[ 2025-11-10 16:13:31,940 ] 184 root - INFO - \u2705 Model Trainer completed successfully.
+[ 2025-11-10 16:13:31,940 ] 125 root - INFO - Data Visualization completed:
+DataVisualizationArtifact(train_correlation_heatmap_path='Artifacts\\11_10_2025_15_41_39\\data_visualization\\heatmap.png', test_correlation_heatmap_path=None, train_numeric_distribution_dir=None, test_numeric_distribution_dir=None, train_categorical_distribution_dir=None, test_categorical_distribution_dir=None)
+
+[ 2025-11-10 16:13:31,940 ] 127 root - INFO - \u2705 Pipeline execution completed successfully.
