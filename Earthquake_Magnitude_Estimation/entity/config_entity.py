@@ -2,6 +2,8 @@ from datetime import datetime
 import os
 from Earthquake_Magnitude_Estimation.constant import training_pipeline
 
+
+
 print(training_pipeline.PIPELINE_NAME)
 print(training_pipeline.ARTIFACT_DIR)
 
@@ -60,6 +62,51 @@ class DataTransformationConfig:
         self.transformed_object_file_path: str = os.path.join( self.data_transformation_dir, training_pipeline.DATA_TRANSFORMATION_TRANSFORMED_OBJECT_DIR,
             training_pipeline.PREPROCESSING_OBJECT_FILE_NAME,)
  
+ 
+
+
+class DataVisualizationConfig:
+    def __init__(self, training_pipeline_config: TrainingPipelineConfig):
+        # Base directory for data visualization artifacts
+        self.data_visualization_dir: str = os.path.join(
+            training_pipeline_config.artifact_dir,
+            training_pipeline.DATA_VISUALIZATION_DIR_NAME
+        )
+
+        # ✅ Add this line right below the above block
+        self.root_dir = self.data_visualization_dir  # Alias for convenience
+
+        # Paths for correlation heatmaps
+        self.train_correlation_heatmap_path: str = os.path.join(
+            self.data_visualization_dir,
+            training_pipeline.TRAIN_CORRELATION_HEATMAP_FILE_NAME
+        )
+        self.test_correlation_heatmap_path: str = os.path.join(
+            self.data_visualization_dir,
+            training_pipeline.TEST_CORRELATION_HEATMAP_FILE_NAME
+        )
+
+        # Directories for numeric distributions
+        self.train_numeric_distribution_dir: str = os.path.join(
+            self.data_visualization_dir,
+            training_pipeline.TRAIN_NUMERIC_DISTRIBUTION_DIR
+        )
+        self.test_numeric_distribution_dir: str = os.path.join(
+            self.data_visualization_dir,
+            training_pipeline.TEST_NUMERIC_DISTRIBUTION_DIR
+        )
+
+        # Directories for categorical distributions
+        self.train_categorical_distribution_dir: str = os.path.join(
+            self.data_visualization_dir,
+            training_pipeline.TRAIN_CATEGORICAL_DISTRIBUTION_DIR
+        )
+        self.test_categorical_distribution_dir: str = os.path.join(
+            self.data_visualization_dir,
+            training_pipeline.TEST_CATEGORICAL_DISTRIBUTION_DIR
+        )
+
+
         
 class ModelTrainerConfig:
     def __init__(self,training_pipeline_config:TrainingPipelineConfig):
