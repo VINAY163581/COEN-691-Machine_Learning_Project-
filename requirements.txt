@@ -1,0 +1,15 @@
+python-dotenv
+pandas
+numpy
+pymongo
+Certifi
+pymongo[srv]==3.12
+scikit-learn
+dill
+pyaml
+xgboost
+lightgbm
+seaborn
+shap 
+azure-storage-blob
+##-e .
