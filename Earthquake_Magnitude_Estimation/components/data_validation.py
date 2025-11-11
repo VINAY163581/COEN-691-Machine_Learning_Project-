@@ -12,7 +12,6 @@ from Earthquake_Magnitude_Estimation.utils.main_utils.utils import read_yaml_fil
 class DataValidation:
     def __init__(self, data_ingestion_artifact: DataIngestionArtifact,
                  data_validation_config: DataValidationConfig):
-        print("test")
         """
         Initialize DataValidation component with artifacts and configurations.
         """
