@@ -44,12 +44,12 @@ class DataValidation:
             missing_columns = [col for col in required_columns if col not in dataframe_columns]
 
             if missing_columns:
-                logging.error(f"❌ Missing required columns: {missing_columns}")
+                logging.error(f" Missing required columns: {missing_columns}")
                 return False
             else:
                 if len(dataframe_columns) > len(required_columns):
                     extra_columns = [col for col in dataframe_columns if col not in required_columns]
-                    logging.warning(f"⚠️ Ignoring extra columns: {extra_columns}")
+                    logging.warning(f" Ignoring extra columns: {extra_columns}")
                 return True
 
         except Exception as e:
@@ -103,7 +103,7 @@ class DataValidation:
         5. Save valid files and drift report
         """
         try:
-            logging.info("🚀 Starting data validation process...")
+            logging.info(" Starting data validation process...")
 
             train_file_path = self.data_ingestion_artifact.trained_file_path
             test_file_path = self.data_ingestion_artifact.test_file_path
@@ -130,8 +130,8 @@ class DataValidation:
             train_df.to_csv(self.data_validation_config.valid_train_file_path, index=False, header=True)
             test_df.to_csv(self.data_validation_config.valid_test_file_path, index=False, header=True)
 
-            logging.info(f"✅ Validated train file saved at: {self.data_validation_config.valid_train_file_path}")
-            logging.info(f"✅ Validated test file saved at: {self.data_validation_config.valid_test_file_path}")
+            logging.info(f" Validated train file saved at: {self.data_validation_config.valid_train_file_path}")
+            logging.info(f" Validated test file saved at: {self.data_validation_config.valid_test_file_path}")
 
             # Create artifact
             data_validation_artifact = DataValidationArtifact(
@@ -143,7 +143,7 @@ class DataValidation:
                 drift_report_file_path=self.data_validation_config.drift_report_file_path,
             )
 
-            logging.info(f"🏁 Data Validation completed successfully.")
+            logging.info(f" Data Validation completed successfully.")
             logging.info(f"Data Validation Artifact: {data_validation_artifact}")
             return data_validation_artifact
 

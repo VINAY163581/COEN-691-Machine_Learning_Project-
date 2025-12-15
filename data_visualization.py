@@ -15,7 +15,7 @@ def load_data(file_path):
         raise FileNotFoundError(f"The file {file_path} does not exist.")
     
     df = pd.read_csv(file_path)
-    print("✅ Data loaded successfully!")
+    print(" Data loaded successfully!")
     return df
 
 

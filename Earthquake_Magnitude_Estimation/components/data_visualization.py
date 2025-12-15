@@ -29,9 +29,7 @@ class DataVisualization:
         except Exception as e:
             raise Earthquake_Magnitude_EstimationException(e, sys)
 
-    # --------------------------
-    # ✅ Load Transformed Data
-    # --------------------------
+    #  Load Transformed Data
     def read_transformed_data(self, file_path: str) -> pd.DataFrame:
         try:
             logging.info(f"Loading transformed data from: {file_path}")
@@ -42,9 +40,7 @@ class DataVisualization:
         except Exception as e:
             raise Earthquake_Magnitude_EstimationException(e, sys)
 
-    # --------------------------
-    # ✅ Basic Plots
-    # --------------------------
+    #  Basic Plots
     def plot_target_distribution(self, df, path):
         try:
             plt.figure(figsize=(8,6))
@@ -52,7 +48,7 @@ class DataVisualization:
             plt.title("Target Distribution")
             plt.savefig(path)
             plt.close()
-            logging.info(f"✅ Target distribution saved at: {path}")
+            logging.info(f" Target distribution saved at: {path}")
         except Exception as e:
             raise Earthquake_Magnitude_EstimationException(e, sys)
 
@@ -66,7 +62,7 @@ class DataVisualization:
             plt.title("Top Feature Correlations With Target")
             plt.savefig(path)
             plt.close()
-            logging.info(f"✅ Correlation barplot saved at: {path}")
+            logging.info(f" Correlation barplot saved at: {path}")
         except Exception as e:
             raise Earthquake_Magnitude_EstimationException(e, sys)
 
@@ -81,13 +77,11 @@ class DataVisualization:
             plt.title("Correlation Heatmap")
             plt.savefig(path)
             plt.close()
-            logging.info(f"✅ Heatmap saved at: {path}")
+            logging.info(f" Heatmap saved at: {path}")
         except Exception as e:
             raise Earthquake_Magnitude_EstimationException(e, sys)
 
-    # --------------------------
-    # ✅ NEW: Pairplot
-    # --------------------------
+    #  Pairplots
     def plot_pairplot(self, df, path, top_n=5):
         try:
             corr = df.corr()["target"].abs().sort_values(ascending=False)
@@ -96,13 +90,12 @@ class DataVisualization:
             sns.pairplot(df[top_features], diag_kind="kde")
             plt.savefig(path)
             plt.close()
-            logging.info(f"✅ Pairplot saved at: {path}")
+            logging.info(f" Pairplot saved at: {path}")
         except Exception as e:
             raise Earthquake_Magnitude_EstimationException(e, sys)
 
-    # --------------------------
-    # ✅ NEW: Scatter plots
-    # --------------------------
+
+    #  Scatter plots
     def plot_feature_vs_target(self, df, path_dir, top_n=6):
         try:
             corr = df.corr()["target"].drop("target").abs().sort_values(ascending=False)
@@ -118,33 +111,35 @@ class DataVisualization:
                 plt.savefig(save_path)
                 plt.close()
 
-            logging.info(f"✅ Feature vs Target scatterplots saved in {path_dir}")
+            logging.info(f" Feature vs Target scatterplots saved in {path_dir}")
         except Exception as e:
             raise Earthquake_Magnitude_EstimationException(e, sys)
 
-    # --------------------------
-    # ✅ NEW: Boxplots
-    # --------------------------
-    def plot_boxplots(self, df, path_dir):
-        try:
-            os.makedirs(path_dir, exist_ok=True)
-            for col in df.columns:
-                plt.figure(figsize=(6,4))
-                sns.boxplot(x=df[col])
-                plt.title(f"Boxplot: {col}")
-                plt.savefig(os.path.join(path_dir, f"{col}_boxplot.png"))
-                plt.close()
+    # Boxplots
+def plot_boxplots(self, df, path_dir, top_n=10):
+    try:
+        os.makedirs(path_dir, exist_ok=True)
 
-            logging.info(f"✅ Boxplots saved in: {path_dir}")
-        except Exception as e:
-            raise Earthquake_Magnitude_EstimationException(e, sys)
+        # Only plot top N features based on correlation with target
+        corr = df.corr()["target"].drop("target").abs().sort_values(ascending=False)
+        top_features = corr.head(top_n).index
 
-    # --------------------------
-    # ✅ Pipeline Entry Point
-    # --------------------------
+        for col in top_features:
+            plt.figure(figsize=(6,4))
+            sns.boxplot(x=df[col])
+            plt.title(f"Boxplot: {col}")
+            plt.savefig(os.path.join(path_dir, f"{col}_boxplot.png"))
+            plt.close()
+
+        logging.info(f" Boxplots saved for top {top_n} features in: {path_dir}")
+
+    except Exception as e:
+        raise Earthquake_Magnitude_EstimationException(e, sys)
+
+    #  Pipeline Entry Point
     def initiate_data_visualization(self):
         try:
-            logging.info("📊 Starting Visualization Stage...")
+            logging.info(" Starting Visualization Stage...")
 
             train_df = self.read_transformed_data(self.data_transformation_artifact.transformed_train_file_path)
 
@@ -170,18 +165,16 @@ class DataVisualization:
                 test_categorical_distribution_dir=None
             )
 
-            logging.info("✅ Visualization completed. Auto-triggering Model Trainer...")
+            logging.info(" Visualization completed. Auto-triggering Model Trainer...")
 
-            # ---------------------------
-            # ✅ Auto-trigger ModelTrainer
-            # ---------------------------
+            #  Auto-trigger ModelTrainer
             model_trainer = ModelTrainer(
                 model_trainer_config=self.model_trainer_config,
                 data_transformation_artifact=self.data_transformation_artifact
             )
             model_trainer_artifact = model_trainer.initiate_model_trainer()
 
-            logging.info("✅ Model Trainer completed successfully.")
+            logging.info(" Model Trainer completed successfully.")
 
             return artifact
 
