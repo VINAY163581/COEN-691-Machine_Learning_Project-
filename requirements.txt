@@ -13,3 +13,13 @@ seaborn
 shap 
 azure-storage-blob
 ##-e .
+
+fastapi
+uvicorn
+python-dotenv
+
+
+jinja2
+python-multipart
+scikit-learn
+streamlit

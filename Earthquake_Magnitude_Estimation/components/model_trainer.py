@@ -47,7 +47,7 @@ class ModelTrainer:
         except Exception as e:
             raise Earthquake_Magnitude_EstimationException(e, sys)
 
-    # ----------------------- Functions for the Grapg generation-----------------------
+    # Functions for the Grapg generation
     def compute_extra_metrics(self, y_true, y_pred):
         """Compute extra evaluation metrics."""
         mse = mean_squared_error(y_true, y_pred)
@@ -169,7 +169,7 @@ class ModelTrainer:
         except Exception as e:
             logging.error(f"SHAP plotting failed: {e}")
 
-    # ----------------------- main train -----------------------
+    #  main train 
     def train_model(self, X_train, y_train, X_test, y_test):
         try:
             logging.info("Starting model training and hyperparameter tuning...")
@@ -187,7 +187,7 @@ class ModelTrainer:
                 "Support Vector Regression": Pipeline([("scaler", StandardScaler()), ("svr", SVR())])
             }
 
-            # Hyperparameters (used by your evaluate_models)
+            # Hyperparameters (used by evaluate_models)
             params = {
                 "Linear Regression": {},
                 "Lasso": {'alpha': [0.1, 0.5, 1.0]},
@@ -208,7 +208,7 @@ class ModelTrainer:
 
             logging.info(f"Cleaned NaNs - train: {np.isnan(y_train).sum()} | test: {np.isnan(y_test).sum()}")
 
-            # Evaluate models via your utility (returns dict of R2)
+            # Evaluate models via utility (returns dict of R2)
             model_report = evaluate_models(
                 X_train=X_train, y_train=y_train,
                 X_test=X_test, y_test=y_test,
@@ -238,7 +238,7 @@ class ModelTrainer:
             df_eval.to_csv(evaluation_report_path, index=False)
             logging.info(f" Model Evaluation Report saved at: {evaluation_report_path}")
 
-            # ==== Comparison plots (bar charts) ====
+            # Comparison plots (bar charts) 
             self._save_barh(df_eval, "R2_Score", os.path.join(plots_dir, "r2_score.png"), "R² Score by Model (higher is better)")
             self._save_barh(df_eval, "RMSE", os.path.join(plots_dir, "rmse.png"), "RMSE by Model (lower is better)")
             self._save_barh(df_eval, "MAE", os.path.join(plots_dir, "mae.png"), "MAE by Model (lower is better)")
